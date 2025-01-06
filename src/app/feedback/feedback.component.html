@@ -1,0 +1,221 @@
+<div class="min-h-[80vh] w-full max-w-6xl mx-auto px-4">
+    <div class="flex flex-col justify-start items-start py-10">
+        <nav aria-label="Progress">
+            <ol role="list" class="space-y-4 md:flex md:space-y-0 md:space-x-8">
+                <li class="w-60">
+                    <button (click)="setStepNum(1)"
+                        [ngClass]="{'border-Red hover:border-red-400': stepNum >= 1, 'border-gray-100 hover:border-gray-300': stepNum < 1}"
+                        class="w-full group flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
+                        <span class="text-sm font-medium"
+                            [ngClass]="{'text-Red group-hover:text-DarkBlue': stepNum >= 1, 'text-gray-500 group-hover:text-gray-700': stepNum < 1}">Adım
+                            1</span>
+                        <span class="text-sm font-medium text-DarkBlue">Takip Numarası</span>
+                    </button>
+                </li>
+
+                <li class="w-60">
+                    <button (click)="setStepNum(2)" [disabled]="!trackingNumber"
+                        [ngClass]="{'border-Red hover:border-red-400': stepNum >= 2, 'border-gray-100 hover:border-gray-300': stepNum < 2}"
+                        class="w-full group flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
+                        <span class="text-sm font-medium"
+                            [ngClass]="{'text-Red group-hover:text-DarkBlue': stepNum >= 2, 'text-gray-500 group-hover:text-gray-700': stepNum < 2}">Adım
+                            2</span>
+                        <span class="text-sm font-medium text-DarkBlue">Kişisel Bilgiler</span>
+                    </button>
+                </li>
+
+                <li class="w-60">
+                    <button (click)="setStepNum(3)" [disabled]="!trackingNumber || !name && !surname && !email"
+                        [ngClass]="{'border-Red hover:border-red-400': stepNum >= 3, 'border-gray-100 hover:border-gray-300': stepNum < 3}"
+                        class="w-full group flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
+                        <span class="text-sm font-medium"
+                            [ngClass]="{'text-Red group-hover:text-DarkBlue': stepNum >= 3, 'text-gray-500 group-hover:text-gray-700': stepNum < 3}">Adım
+                            3</span>
+                        <span class="text-sm font-medium text-DarkBlue">Değerlendirme</span>
+                    </button>
+                </li>
+            </ol>
+        </nav>
+
+        <!--Step-1-->
+        <div *ngIf="stepNum === 1" class="my-20 w-full flex flex-col justify-start items-start gap-5">
+            <h4 class="text-2xl text-Blue font-bold">
+                Aras Kargo Takip Numarası
+            </h4>
+            <p class="max-w-lg text-DarkBlue">
+                Kargonuzun takip numarasını girerek hizmetimiz hakkında geri bildirimde bulunabilir ve değerlendirmenizi
+                tamamlayabilirsiniz.
+            </p>
+            <div class="relative flex items-center">
+                <mat-icon class="absolute left-2 text-Red" aria-hidden="false" aria-label="tracking-icon"
+                    fontIcon="local_shipping"></mat-icon>
+
+                <input class="border-2 border-Red rounded-md py-2 pr-2 pl-9 min-w-72" type="text"
+                    placeholder="5123459723418" [(ngModel)]="trackingNumber">
+            </div>
+
+            <button (click)="setStepNum(2)" [disabled]="!trackingNumber"
+                class="flex flex-row gap-2 bg-Blue text-white pl-4 pr-2.5 py-2 rounded-md">
+                <span>Devam et</span>
+                <mat-icon class="text-white " aria-hidden="false" aria-label="tracking-icon"
+                    fontIcon="navigate_next"></mat-icon>
+            </button>
+        </div>
+        <!--Step-1-->
+
+        <!--Step-2-->
+        <div *ngIf="stepNum === 2" class="my-20 w-full flex flex-col justify-start items-start gap-5">
+            <h4 class="text-2xl text-Blue font-bold">
+                Kişisel Bilgiler
+            </h4>
+            <p class="max-w-lg text-DarkBlue">
+                Geri bildiriminizle ilgili daha fazla bilgi alabilmemiz için, aşağıdaki bilgilerinizi girmeniz
+                gerekmektedir. Gizliliğiniz bizim için önemlidir.
+            </p>
+            <div class="flex flex-col">
+                <label for="isim" class="text-DarkBlue font-medium">İsim</label>
+                <div class="relative flex items-center">
+                    <mat-icon class="absolute left-2 text-Red" aria-hidden="false" aria-label="person-icon"
+                        fontIcon="person_outline"></mat-icon>
+
+                    <input id="isim" name="isim" class="border-2 border-Red rounded-md py-2 pr-2 pl-9 min-w-72"
+                        type="text" [(ngModel)]="name">
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="soyisim" class="text-DarkBlue font-medium">Soyisim</label>
+                <div class="relative flex items-center">
+                    <mat-icon class="absolute left-2 text-Red" aria-hidden="false" aria-label="person-icon"
+                        fontIcon="person_outline"></mat-icon>
+
+                    <input id="soyisim" name="soyisim" class="border-2 border-Red rounded-md py-2 pr-2 pl-9 min-w-72"
+                        type="text" [(ngModel)]="surname">
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email" class="text-DarkBlue font-medium">Email</label>
+                <div class="relative flex items-center">
+                    <mat-icon class="absolute left-2 text-Red" aria-hidden="false" aria-label="email-icon"
+                        fontIcon="mail_outline"></mat-icon>
+
+                    <input id="email" name="email" class="border-2 border-Red rounded-md py-2 pr-2 pl-9 min-w-72"
+                        type="email" [(ngModel)]="email">
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="tel" class="text-DarkBlue font-medium">Telefon numarası (Opsiyonel)</label>
+                <div class="relative flex items-center">
+                    <mat-icon class="absolute left-2 text-Red" aria-hidden="false" aria-label="call-icon"
+                        fontIcon="call"></mat-icon>
+
+                    <input id="tel" name="tel" class="border-2 border-Red rounded-md py-2 pr-2 pl-9 min-w-72" type="tel"
+                        [(ngModel)]="tel">
+                </div>
+            </div>
+
+            <button (click)="setStepNum(3)" [disabled]="!trackingNumber || !name || !surname || !email"
+                class="flex flex-row gap-2 bg-Blue text-white pl-4 pr-2.5 py-2 rounded-md">
+                <span>Devam et</span>
+                <mat-icon class="text-white " aria-hidden="false" aria-label="tracking-icon"
+                    fontIcon="navigate_next"></mat-icon>
+            </button>
+        </div>
+        <!--Step-2-->
+
+        <!--Step-3-->
+        <div *ngIf="stepNum === 3" class="my-20 w-full flex flex-col justify-start items-start gap-5">
+            <h4 class="text-2xl text-Blue font-bold">
+                Kargo Deneyiminizi Değerlendirin
+            </h4>
+            <p class="max-w-lg text-DarkBlue">
+                Hizmet kalitemizi artırmamıza yardımcı olmak için kargo deneyiminizi değerlendirmenizi rica ediyoruz.
+                Memnuniyetinizi belirtmek için puan verebilir ve detaylı yorumunuzu paylaşabilirsiniz.
+            </p>
+
+            <div class="flex flex-row flex-wrap gap-3">
+                <button (click)="setMood(1)"
+                    class="relative w-32 flex flex-col gap-2 items-center justify-center rounded-md p-3"
+                    [ngClass]="{'bg-gray-100': selectedMood !== 1, 'bg-Red bg-opacity-20 relative': selectedMood === 1}">
+                    <span class="text-4xl">😔</span>
+                    <span class="text-sm font-medium text-DarkBlue">Çok kötü</span>
+                    <div [ngClass]="{'absolute inset-[-8px] rounded-xl border-4 border-Red/70': selectedMood === 1}">
+                    </div>
+                    <div
+                        [ngClass]="{'flex justify-center items-center bg-white rounded-full absolute -top-2 -right-2': selectedMood === 1, 'hidden': selectedMood !== 1}">
+                        <mat-icon class="text-Red" aria-hidden="false" aria-label="check-icon"
+                            fontIcon="task_alt"></mat-icon>
+                    </div>
+                </button>
+                <button (click)="setMood(2)"
+                    class="relative w-32 flex flex-col gap-2 items-center justify-center rounded-md p-3"
+                    [ngClass]="{'bg-gray-100': selectedMood !== 2, 'bg-Red bg-opacity-20': selectedMood === 2}">
+                    <span class="text-4xl">🙁</span>
+                    <span class="text-sm font-medium text-DarkBlue">Kötü</span>
+                    <div [ngClass]="{'absolute inset-[-8px] rounded-xl border-4 border-Red/70': selectedMood === 2}">
+                    </div>
+                    <div
+                        [ngClass]="{'flex justify-center items-center bg-white rounded-full absolute -top-2 -right-2': selectedMood === 2, 'hidden': selectedMood !== 2}">
+                        <mat-icon class="text-Red" aria-hidden="false" aria-label="check-icon"
+                            fontIcon="task_alt"></mat-icon>
+                    </div>
+                </button>
+                <button (click)="setMood(3)"
+                    class="relative w-32 flex flex-col gap-2 items-center justify-center rounded-md p-3"
+                    [ngClass]="{'bg-gray-100': selectedMood !== 3, 'bg-Red bg-opacity-20 relative': selectedMood === 3}">
+                    <span class="text-4xl">😐</span>
+                    <span class="text-sm font-medium text-DarkBlue">Ortalama</span>
+                    <div [ngClass]="{'absolute inset-[-8px] rounded-xl border-4 border-Red/70': selectedMood === 3}">
+                    </div>
+                    <div
+                        [ngClass]="{'flex justify-center items-center bg-white rounded-full absolute -top-2 -right-2': selectedMood === 3, 'hidden': selectedMood !== 3}">
+                        <mat-icon class="text-Red" aria-hidden="false" aria-label="check-icon"
+                            fontIcon="task_alt"></mat-icon>
+                    </div>
+                </button>
+                <button (click)="setMood(4)"
+                    class="relative w-32 flex flex-col gap-2 items-center justify-center rounded-md p-3"
+                    [ngClass]="{'bg-gray-100': selectedMood !== 4, 'bg-Red bg-opacity-20 relative': selectedMood === 4}">
+                    <span class="text-4xl">🙂</span>
+                    <span class="text-sm font-medium text-DarkBlue">İyi</span>
+                    <div [ngClass]="{'absolute inset-[-8px] rounded-xl border-4 border-Red/70': selectedMood === 4}">
+                    </div>
+                    <div
+                        [ngClass]="{'flex justify-center items-center bg-white rounded-full absolute -top-2 -right-2': selectedMood === 4, 'hidden': selectedMood !== 4}">
+                        <mat-icon class="text-Red" aria-hidden="false" aria-label="check-icon"
+                            fontIcon="task_alt"></mat-icon>
+                    </div>
+                </button>
+                <button (click)="setMood(5)"
+                    class="relative w-32 flex flex-col gap-2 items-center justify-center rounded-md p-3"
+                    [ngClass]="{'bg-gray-100': selectedMood !== 5, 'bg-Red bg-opacity-20 relative': selectedMood === 5}">
+                    <span class="text-4xl">😃</span>
+                    <span class="text-sm font-medium text-DarkBlue">Çok iyi</span>
+                    <div [ngClass]="{'absolute inset-[-8px] rounded-xl border-4 border-Red/70': selectedMood === 5}">
+                    </div>
+                    <div
+                        [ngClass]="{'flex justify-center items-center bg-white rounded-full absolute -top-2 -right-2': selectedMood === 5, 'hidden': selectedMood !== 5}">
+                        <mat-icon class="text-Red" aria-hidden="false" aria-label="check-icon"
+                            fontIcon="task_alt"></mat-icon>
+                    </div>
+                </button>
+            </div>
+
+            <div class="flex flex-col mt-4">
+                <label for="message" class="text-DarkBlue font-medium">Yorumunuz (Opsiyonel)</label>
+                <textarea id="message" name="message" class="border-2 border-Red rounded-md py-2 pr-2 pl-2 min-w-72"
+                    [(ngModel)]="message"></textarea>
+            </div>
+
+            <button (click)="submitFeedback()" [disabled]="!selectedMood"
+                class="flex flex-row gap-2 bg-Blue text-white pl-4 pr-2.5 py-2 rounded-md">
+                <span>Değerlendir</span>
+                <mat-icon class="text-white " aria-hidden="false" aria-label="tracking-icon"
+                    fontIcon="navigate_next"></mat-icon>
+            </button>
+        </div>
+        <!--Step-3-->
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<header class="top-0 w-full">
+    <nav class="relative flex flex-row justify-between items-center py-8 mx-auto max-w-6xl max-xl:px-4">
+        <a routerLink="/" class="z-50">
+            <img src="https://www.araskargo.com.tr/assets/images/aras-logo.svg" alt="logo" class="w-36">
+        </a>
+        <ul class="max-md:hidden flex flex-row items-center gap-4">
+            <li>
+                <a class="w-full cursor-pointer text-Blue font-medium" routerLink="/">
+                    Hakkımızda
+                </a>
+            </li>
+            <li>
+                <a class="w-full cursor-pointer text-Blue font-medium" routerLink="/degerlendir">
+                    Değerlendir
+                </a>
+            </li>
+            <li>
+                <a class="bg-DarkBlue hover:bg-Blue duration-300 text-white px-3.5 py-3 rounded-md w-full cursor-pointer"
+                    routerLink="/iletisim">
+                    Bize Ulaşın
+                </a>
+            </li>
+        </ul>
+        <ul [ngClass]="{'hidden' : !isMenuOpen}" class="md:hidden z-40 absolute w-full min-h-screen top-0 left-0 bg-DarkBlue flex flex-col justify-center items-center gap-4">
+            <li>
+                <a class="w-full cursor-pointer text-Red font-medium" routerLink="/">
+                    Hakkımızda
+                </a>
+            </li>
+            <li>
+                <a class="w-full cursor-pointer text-Red font-medium" routerLink="/degerlendir">
+                    Değerlendir
+                </a>
+            </li>
+            <li>
+                <a class="bg-DarkBlue hover:bg-Blue duration-300 text-white px-3.5 py-3 rounded-md w-full cursor-pointer"
+                    routerLink="/iletisim">
+                    Bize Ulaşın
+                </a>
+            </li>
+        </ul>
+        <button class="md:hidden z-50" (click)="toggleMenu()">
+            <mat-icon class="text-Red" aria-hidden="false" aria-label="menu-icon"
+            fontIcon="menu"></mat-icon>
+        </button>
+    </nav>
+</header>
