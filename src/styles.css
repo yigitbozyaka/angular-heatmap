@@ -24,6 +24,13 @@ body {
   overflow: hidden;
   background-color: #DEFFFD;
   position: relative;
+  max-width: 100%;
+}
+
+@media (max-width: 1160px) {
+  #turkey-map {
+    overflow-x: scroll;
+  }
 }
 
 #turkey-map[data-map='districts'] #turkey>g>g path:hover,
