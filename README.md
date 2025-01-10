@@ -1,6 +1,10 @@
-# Frontend
+# Heatmap Website with Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+[Backend](https://github.com/yigitbozyaka/dotnet-heatmap-backend)
+
+## Setup
+
+Change the BaseApiUrl in url.constants.ts file with your backend url.
 
 ## Development server
 
